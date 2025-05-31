@@ -1,0 +1,18 @@
+{
+  "name": "ts-hungarian",
+  "version": "1.0.0",
+  "description": "This was built as a multi-faceted learning exercise.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^22.15.29"
+  }
+}
