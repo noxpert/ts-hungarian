@@ -4,14 +4,22 @@
   "description": "This was built as a multi-faceted learning exercise.",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./src/index.ts"
+    "start": "node ./dist/index.js",
+    "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
+    "build": "tsc && cp -r src/data dist/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.2",
     "@types/node": "^22.15.29",
+    "dotenv": "^16.5.0",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }
