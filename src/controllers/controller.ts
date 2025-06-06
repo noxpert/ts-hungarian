@@ -41,54 +41,32 @@ export const getAllWords = (getRequest: Request, getResponse: Response) => {
 export const getSomeWords = (getRequest: Request, getResponse: Response) => {
   // let words: VocabWord[] = getVocabWords();
   const count = Number(getRequest.query.count);
+
+  function errorResponse(status: number, message: string) {
+    getResponse.send(
+      JSON.stringify(
+        {
+          success: false,
+          status: status,
+          type: "application/json",
+          message: message
+        }
+      )
+    );
+  }
+
   if (isNaN(count)) {
     console.log(`GET with non-numeric count: ${count}`);
-    getResponse.send(
-      JSON.stringify(
-        {
-          success: false,
-          status: 400,
-          type: "application/json",
-          message: `Invalid count: ${count}`
-        }
-      )
-    );
+    errorResponse(400, `Invalid count: ${count}`);
   } else if (typeof getRequest.query.count === 'string' && getRequest.query.count.includes(".")) {
-    console.log(`GET with non integer received: ${count}`);
-    getResponse.send(
-      JSON.stringify(
-        {
-          success: false,
-          status: 400,
-          type: "application/json",
-          message: `Invalid count: ${count}`
-        }
-      )
-    );
+    console.log(`GET with non integer count: ${count}`);
+    errorResponse(400, `Invalid count: ${count}`);
   } else if (count <= 0) {
-    console.log(`GET must be greater than zero, received: ${count}`);
-    getResponse.send(
-      JSON.stringify(
-        {
-          success: false,
-          status: 400,
-          type: "application/json",
-          message: `Invalid count: ${count}`
-        }
-      )
-    );
+    console.log(`GET count must be greater than zero, received: ${count}`);
+    errorResponse(400, `Invalid count: ${count}`);
   } else if (count > MAX_COUNT) {
-    console.log(`GET must be less than ${MAX_COUNT}, received: ${count}`);
-    getResponse.send(
-      JSON.stringify(
-        {
-          success: false,
-          status: 400,
-          type: "application/json",
-          message: `Invalid count: ${count}`
-        }
-      )
-    );
+    console.log(`GET count must be less than ${MAX_COUNT}, received: ${count}`);
+    errorResponse(400, `Invalid count: ${count}`);
   } else {
     console.log(`GET with count of: ${getRequest.query.count}`);
     getResponse.send(
