@@ -1,19 +1,21 @@
-import http from "http";
+import express = require("express");
+import bodyParser = require("body-parser");
+import routes from "./routes/routes";
 
-// import controller functions
-import { getVocabWords} from "./controller";
+const app: express.Application = express();
+const port: number = 9000;
 
-const myServer = http.createServer((req, res) => {
-  // GET words
-  if (req.method == "GET" && req.url == "/api/words") {
-     return getVocabWords(req, res);
-  }
-  res.end();
-});
+// Enable CORS for all requests
+let cors: any;
+cors = require("cors");
+app.use(cors());
 
-myServer.listen(9000, () => {
-   console.log('Server is running on port 9000. Go to http://localhost:9000/');
-});
+// Add routes
+routes(app);
 
-// myServer.close()
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+})
