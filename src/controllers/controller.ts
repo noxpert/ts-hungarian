@@ -1,26 +1,29 @@
-import { ServerResponse, IncomingMessage } from "http";
+import { Request, Response } from "express";
 import { getVocabWords } from "../services/wordService";
 import { VocabWord } from "../types/VocabWord";
 
-export function getWords(req: IncomingMessage, res: ServerResponse) {
+export const getAllWords = (getRequest: Request, getResponse: Response) => {
   let words: VocabWord[] = getVocabWords();
   if (words.length === 0) {
     // No words found
-    res.writeHead(500, { "Content-Type": "application/json" });
-    res.end(
+    getResponse.send(
       JSON.stringify({
         success: false,
         status: 404,
+        type: "application/text",
         error: "Failed to find any words."
       })
     );
   } else {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({
-        success: true,
-        message: words,
-      })
+    getResponse.send(
+      JSON.stringify(
+        {
+          success: true,
+          status: 200,
+          type: "application/json",
+          message: words,
+        }
+      )
     );
   }
 }
