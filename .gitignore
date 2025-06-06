@@ -1,3 +1,6 @@
+# Compiled/built
+/dist
+
 # Node modules
 /node_modules
 
