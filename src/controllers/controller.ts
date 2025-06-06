@@ -46,7 +46,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
     getResponse.send(
       JSON.stringify(
         {
-          success: true,
+          success: false,
           status: 400,
           type: "application/json",
           message: `Invalid count: ${count}`
@@ -58,7 +58,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
     getResponse.send(
       JSON.stringify(
         {
-          success: true,
+          success: false,
           status: 400,
           type: "application/json",
           message: `Invalid count: ${count}`
@@ -70,7 +70,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
     getResponse.send(
       JSON.stringify(
         {
-          success: true,
+          success: false,
           status: 400,
           type: "application/json",
           message: `Invalid count: ${count}`
@@ -82,7 +82,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
     getResponse.send(
       JSON.stringify(
         {
-          success: true,
+          success: false,
           status: 400,
           type: "application/json",
           message: `Invalid count: ${count}`
@@ -108,7 +108,7 @@ export const addWord = (getRequest: Request, postResponse: Response) => {
   postResponse.send(
     JSON.stringify(
       {
-        success: true,
+        success: false,
         status: 404,
         type: "application/json",
         message: "The POST to add words is not yet implemented"
