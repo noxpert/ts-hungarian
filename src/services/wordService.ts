@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import {VocabWord} from "../types/VocabWord";
 
 // Use this until the data is stored in a database.
