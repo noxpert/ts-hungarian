@@ -28,6 +28,25 @@ const DICTIONARY: VocabWord[] = [
   }
 ];
 
-export function getVocabWords(): VocabWord[] {
+function getRandomVocabWord(): VocabWord {
+  return DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)]
+}
+
+export function getAllVocabWords(): VocabWord[] {
   return DICTIONARY;
+}
+
+export function getVocabWords(wordCount: number): VocabWord[] {
+  let wordsToReturn: VocabWord[] = [];
+  if (wordCount >= DICTIONARY.length) {
+    wordsToReturn = DICTIONARY;
+  } else {
+    while (wordsToReturn.length < wordCount) {
+      let randomWord: VocabWord = getRandomVocabWord();
+      if (!wordsToReturn.includes(randomWord)) {
+        wordsToReturn.push(randomWord);
+      }
+    }
+  }
+  return wordsToReturn;
 }

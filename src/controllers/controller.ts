@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getVocabWords } from "../services/wordService";
+import { getAllVocabWords, getVocabWords } from "../services/wordService";
 import { VocabWord } from "../types/VocabWord";
 
 const MAX_COUNT = 25;
@@ -31,7 +31,7 @@ export const getWords = (getRequest: Request, getResponse: Response) => {
 }
 
 export const getAllWords = (getRequest: Request, getResponse: Response) => {
-  let words: VocabWord[] = getVocabWords();
+  let words: VocabWord[] = getAllVocabWords();
   if (words.length === 0) {
     // No words found
     errorResponse(getResponse, 404, "Failed to find any words.");
@@ -41,7 +41,6 @@ export const getAllWords = (getRequest: Request, getResponse: Response) => {
 }
 
 export const getSomeWords = (getRequest: Request, getResponse: Response) => {
-  // let words: VocabWord[] = getVocabWords();
   const countParam: string = String(getRequest.query.count)
   const count = Number(countParam);
 
@@ -62,8 +61,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
       `Invalid count provided, must not be more than ${MAX_COUNT} but was: ${count}`
     );
   } else {
-    console.log(`GET with count of: ${getRequest.query.count}`);
-    let words: VocabWord[] = getVocabWords();
+    let words: VocabWord[] = getVocabWords(count);
     if (words.length === 0) {
       // No words found
       errorResponse(getResponse, 404, "Failed to find any words.");

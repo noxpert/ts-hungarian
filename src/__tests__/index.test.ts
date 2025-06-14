@@ -8,6 +8,18 @@ describe("GET /api/words get some words", () => {
     expect(response.body.type).toEqual("application/json");
     expect(response.body.words.length).toEqual(6);
   });
+  it('test getting two words', async () => {
+    const response = await request(app).get("/api/words?count=2");
+    expect(response.status).toBe(200);
+    expect(response.body.type).toEqual("application/json");
+    expect(response.body.words.length).toEqual(2);
+  });
+  it('test getting more words than available', async () => {
+    const response = await request(app).get("/api/words?count=25");
+    expect(response.status).toBe(200);
+    expect(response.body.type).toEqual("application/json");
+    expect(response.body.words.length).toEqual(6);
+  });
 });
 
 describe("GET /api/words error handling", () => {
