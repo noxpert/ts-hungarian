@@ -1,13 +1,12 @@
-import { Request, Response } from "express";
-import { getAllVocabWords, getVocabWords } from "../services/wordService";
-import { VocabWord } from "../types/VocabWord";
+import {Request, Response} from "express";
+import {getAllVocabWords, getVocabWords} from "../services/wordService";
+import {VocabWord} from "../types/VocabWord";
 
 const MAX_COUNT = 25;
 
 function errorResponse(response: Response, status: number, message: string) {
   response.status(status).send(
     {
-      type: "application/json",
       message: message
     }
   );
@@ -16,7 +15,6 @@ function errorResponse(response: Response, status: number, message: string) {
 function successResponse(response: Response, status: number, words: VocabWord[]) {
   response.status(status).send(
     {
-      type: "application/json",
       words: words
     }
   );
@@ -47,7 +45,7 @@ export const getSomeWords = (getRequest: Request, getResponse: Response) => {
   if (isNaN(count)) {
     console.log(`GET with non-numeric count: ${count}`);
     errorResponse(getResponse, 400, `Invalid count provided, non numeric: ${countParam}`);
-  } else if (typeof getRequest.query.count === 'string' && getRequest.query.count.includes(".")) {
+  } else if (typeof getRequest.query.count === "string" && getRequest.query.count.includes(".")) {
     console.log(`GET with non integer count: ${count}`);
     errorResponse(getResponse, 400, `Invalid count provided, non integer: ${count}`);
   } else if (count <= 0) {

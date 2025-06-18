@@ -1,45 +1,20 @@
 import {VocabWord} from "../types/VocabWord";
-
-// Use this until the data is stored in a database.
-const DICTIONARY: VocabWord[] = [
-  {
-    "english": "mud",
-    "hungarian": "sár"
-  },
-  {
-    "english": "government",
-    "hungarian": "kormány"
-  },
-  {
-    "english": "vaccine",
-    "hungarian": "védőoltás"
-  },
-  {
-    "english": "visa",
-    "hungarian": "vízum"
-  },
-  {
-    "english": "accommodation",
-    "hungarian": "szállás"
-  },
-  {
-    "english": "faucet",
-    "hungarian": "csap"
-  }
-];
+import {getVocabWordsFromDataStore} from "../data/dataAccess";
 
 function getRandomVocabWord(): VocabWord {
-  return DICTIONARY[Math.floor(Math.random() * DICTIONARY.length)]
+  const allVocabWords: VocabWord[] = getAllVocabWords();
+  return allVocabWords[Math.floor(Math.random() * allVocabWords.length)]
 }
 
 export function getAllVocabWords(): VocabWord[] {
-  return DICTIONARY;
+  return getVocabWordsFromDataStore();
 }
 
 export function getVocabWords(wordCount: number): VocabWord[] {
+  const allVocabWords: VocabWord[] = getAllVocabWords();
   let wordsToReturn: VocabWord[] = [];
-  if (wordCount >= DICTIONARY.length) {
-    wordsToReturn = DICTIONARY;
+  if (wordCount >= allVocabWords.length) {
+    wordsToReturn = allVocabWords;
   } else {
     while (wordsToReturn.length < wordCount) {
       let randomWord: VocabWord = getRandomVocabWord();
