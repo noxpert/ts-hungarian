@@ -7,7 +7,7 @@
     "start": "node ./dist/src/index.js",
     "test": "jest --watchAll --detectOpenHandles --coverage",
     "dev": "nodemon -L -e ts --exec \"npm run build && npm start\"",
-    "build": "tsc && cp -r src/data dist/"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
