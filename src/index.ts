@@ -13,7 +13,7 @@ app.use(cors());
 // Add routes
 routes(app);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.listen(port, () => {
