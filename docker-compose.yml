@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - ${PORT}:${PORT}  # Add PORT to .env
+    volumes:
+    - .:/usr/src/app

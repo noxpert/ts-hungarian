@@ -29,6 +29,22 @@ const DICTIONARY: VocabWord[] = [
   {
     "english": "muscle",
     "hungarian": "izom"
+  },
+  {
+    "english": "narrow",
+    "hungarian": "keskeny"
+  },
+  {
+    "english": "shallow",
+    "hungarian": "sekély"
+  },
+  {
+    "english": "constantly",
+    "hungarian": "állandóan"
+  },
+  {
+    "english": "dense",
+    "hungarian": "sűrű"
   }
 ];
 
